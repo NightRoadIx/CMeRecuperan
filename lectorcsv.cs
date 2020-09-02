@@ -24,6 +24,7 @@ namespace leetura
 			HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
 			
 			// TODO: Hay que manejar las excepciones que ocurran, sobre todo cuando no exista el archivo o se presente un error de lectura
+			// TODO: Generar una rutina para mostrar al usuario que se esta leyendo el archivo
 			
 			// Depués se crea un "streaming" para la lectura "en directo" del archivo solicitado
 			StreamReader sr = new StreamReader(resp.GetResponseStream());
@@ -44,15 +45,69 @@ namespace leetura
 			// Llamar a la función para obtener un archivo CSV directamente de una URL
 			string archon = obtenerCSV(destinoURL);
 			
+			// UNDONE: Eliminar mostrar el contendio del archivo CSV completo
 			// Escribir todo el contenido del archivo
-			Console.WriteLine(archon);
+			// Console.WriteLine(archon);
+			
+			/* * * * */
+			// FIXME:	Arreglar esta sección para la lectura de todo el archivo
+			//		  	y almacenar los datos
+			/* Leer el contenido del archivo línea por línea */
+			// Generar una cadena de texto temporal
+			string aLine;
+			// Crear un objeto StringReader, pasando como argumento al constructor el texto
+			StringReader strReader = new StringReader(archon);
+			
+			// Leer la cadena línea por línea (se entiende que estará delimitada por un '\n')
+			aLine = strReader.ReadLine();
+			// Escribir en consola
+			Console.WriteLine(aLine);
+			
+			// Generar un arreglo de cadenas de texto
+			string [] separada = new string[1];
+			// Separamos la línea leída por medio de comas
+			separada = aLine.Split(',');
+			// Mostramos el elemento [0]
+			Console.WriteLine(separada[0]);
+			// Mostrar el tamaño del arreglo
+			Console.WriteLine(separada.Length);
+			
+			// UNDONE: Eliminar este ejemplo de lectura de una nueva línea
+			//aLine = strReader.ReadLine();
+			//Console.WriteLine(aLine);
+			
+			//Leer completamente el texto
+			// TODO: 	Separar el encabezado de los datos
+			//			y después, lo que se hará es ingresar los datos a listas
+			
+			// HACK: Listas de tipo cadena de texto
+			// List<string> nombre = new List<string>();
+			// Añadir datos a la lista
+			// nombre.Add()
+			while(true) 
+			{
+				// Leer línea a línea de la cadena de texto
+				aLine = strReader.ReadLine();
+				
+				// Mientras no se halle el caracter null 
+				if(aLine != null)
+					Console.WriteLine(aLine);
+				else // EOF = End Of File  ---> texto como null
+					break;
+			}			
+			
+			// IMPORTANTE: Cerrar el Lector de Cadenas
+			strReader.Close();
+			
+			/* * * * */
+			
 			// Esperar que se presione una tecla 
 			Console.Write("Presione una tecla para continuar-->");
 			Console.ReadKey(true);
 			// Limpiar la consola
 			Console.Clear();
 			
-			// TODO: 
+			// TODO: Esto se debe de acabar, esta etiqueta será la última que van a quitar
 			Console.ReadKey(true);
 		}
 	}
