@@ -26,6 +26,8 @@ namespace leetura
 			// TODO: Hay que manejar las excepciones que ocurran, sobre todo cuando no exista el archivo o se presente un error de lectura
 			// TODO: Generar una rutina para mostrar al usuario que se esta leyendo el archivo
 			
+			// Lo intentaré mi muy estimado y querido profesor
+			
 			// Depués se crea un "streaming" para la lectura "en directo" del archivo solicitado
 			StreamReader sr = new StreamReader(resp.GetResponseStream());
 			// Se leerá el archivo hasta el final para asignarlo a una cadena de texto
